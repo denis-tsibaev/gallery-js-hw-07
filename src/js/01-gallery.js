@@ -30,7 +30,7 @@ function onGalleryClick(e) {
     <div class="modal">
        <img
 	    src=${e.target.dataset.source}      
-        alt=${e.target.description}
+        alt=${e.target.alt}
 	   />	
     </div>
 `);
