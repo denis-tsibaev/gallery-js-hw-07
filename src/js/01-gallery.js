@@ -1,6 +1,5 @@
 import { galleryItems } from "./gallery-items.js";
 // import * as basicLightbox from "basicLightbox";
-
 const galleryEl = document.querySelector(".gallery");
 
 galleryItems.map((item) => {
@@ -35,4 +34,19 @@ function onGalleryClick(e) {
     </div>
 `);
   instance.show();
+
+  window.addEventListener("keydown", onKeyPressHandler);
+}
+
+function onKeyPressHandler(e) {
+  if (e.key !== "Escape") {
+    console.log("Нажата клавиша", e.key);
+    return;
+  } else console.log("нажат", e.key);
+  modalRemover();
+}
+
+function modalRemover() {
+  () => instance.close();
+  window.removeEventListener("keydown", onKeyPressHandler);
 }
