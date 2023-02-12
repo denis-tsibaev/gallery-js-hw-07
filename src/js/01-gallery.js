@@ -1,6 +1,5 @@
 import { galleryItems } from "./gallery-items.js";
-// import * as basicLightbox from "basicLightbox";
-const galleryEl = document.querySelector(".gallery");
+const galleryEl = document.querySelector("gallery");
 
 galleryItems.map((item) => {
   galleryEl.insertAdjacentHTML(
@@ -25,16 +24,17 @@ galleryEl.addEventListener("click", onGalleryClick);
 function onGalleryClick(e) {
   //   console.log(e.target.dataset.source);
   //   console.log(e.target.alt);
-  const instance = basicLightbox.create(`
+  const instance = basicLightbox.create(
+    `
     <div class="modal">
        <img
-	    src=${e.target.dataset.source}      
+	    src=${e.target.dataset.source}
         alt=${e.target.alt}
-	   />	
+	   />
     </div>
-`);
+`
+  );
   instance.show();
-
   window.addEventListener("keydown", onKeyPressHandler);
 }
 
