@@ -35,18 +35,25 @@ function onGalleryClick(e) {
 `
   );
   instance.show();
-  window.addEventListener("keydown", onKeyPressHandler);
+
+  window.addEventListener("keydown", (e) => {
+    if (e.key !== "Escape") {
+      console.log("Нажата клавиша", e.key);
+      return;
+    } else console.log("нажат", e.key);
+    instance.close();
+  });
 }
 
-function onKeyPressHandler(e) {
-  if (e.key !== "Escape") {
-    console.log("Нажата клавиша", e.key);
-    return;
-  } else console.log("нажат", e.key);
-  modalRemover();
-}
+// function onKeyPressHandler(e) {
+//   if (e.key !== "Escape") {
+//     console.log("Нажата клавиша", e.key);
+//     return;
+//   } else console.log("нажат", e.key);
+//   hideModal();
+// }
 
-function modalRemover() {
-  () => instance.close();
-  window.removeEventListener("keydown", onKeyPressHandler);
-}
+// function hideModal() {
+//   () => instance.close();
+//   window.removeEventListener("keydown", onKeyPressHandler);
+// }
