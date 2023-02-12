@@ -1,5 +1,5 @@
 import { galleryItems } from "./gallery-items.js";
-const galleryEl = document.querySelector("gallery");
+const galleryEl = document.querySelector(".gallery");
 
 galleryItems.map((item) => {
   galleryEl.insertAdjacentHTML(
