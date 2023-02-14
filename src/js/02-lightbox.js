@@ -5,27 +5,21 @@ galleryItems.map((item) => {
   galleryEl.insertAdjacentHTML(
     "beforeend",
     `
-		<a class="gallery__item"
-		href=${item.original}>
-  		<img class="gallery__image"
-		src=${item.preview}
-		alt=${item.description}
+	<a class="gallery__item" href="${item.original}">
+		<img class="gallery__image"
+		src="${item.preview}"
+		alt="${item.description}"
 		 />
-		</a>   
+	</a>
 	`
   );
+  console.log(item.description);
 });
 
-galleryEl.addEventListener(
-  "click",
-  new SimpleLightbox(".gallery a", {
-    maxZoom: 1.1,
-    navText: ["←", "→"],
-    captions: true,
-    captionSelector: "img",
-    captionType: "attr",
-    captionsData: "alt",
-    captionPosition: "bottom",
-    captionDelay: 250,
-  })
-);
+new SimpleLightbox(".gallery a", {
+  maxZoom: 1.2,
+  captionsData: "alt",
+  captionPosition: "bottom",
+  captionDelay: 250,
+  overlayOpacity: 0.8,
+});

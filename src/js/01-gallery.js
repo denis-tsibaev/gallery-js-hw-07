@@ -9,9 +9,9 @@ galleryItems.map((item) => {
     <a class="gallery__link" href=#>
       <img
         class="gallery__image"
-        src=${item.preview}
-        data-source=${item.original}
-        alt=${item.description}
+        src="${item.preview}"
+        data-source="${item.original}"
+        alt="${item.description}"
       />
     </a>
   </div>
@@ -24,6 +24,8 @@ galleryEl.addEventListener("click", onGalleryClick);
 function onGalleryClick(e) {
   //   console.log(e.target.dataset.source);
   //   console.log(e.target.alt);
+  //   console.log(e.target.nodeName);
+
   if (e.target.nodeName !== "IMG") {
     return;
   }
@@ -32,8 +34,8 @@ function onGalleryClick(e) {
     `
     <div class="modal">
        <img
-	    src=${e.target.dataset.source}
-        alt=${e.target.alt}
+	    src="${e.target.dataset.source}"
+        alt="${e.target.alt}"
 	   />
     </div>
 `,
