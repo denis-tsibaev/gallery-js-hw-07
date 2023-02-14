@@ -24,6 +24,10 @@ galleryEl.addEventListener("click", onGalleryClick);
 function onGalleryClick(e) {
   //   console.log(e.target.dataset.source);
   //   console.log(e.target.alt);
+  if (e.target.nodeName !== "IMG") {
+    return;
+  }
+
   const instance = basicLightbox.create(
     `
     <div class="modal">
@@ -32,28 +36,32 @@ function onGalleryClick(e) {
         alt=${e.target.alt}
 	   />
     </div>
-`
+`,
+    {
+      /*
+       * Function that gets executed before the lightbox will be shown.
+       * Returning false will prevent the lightbox from showing.
+       */
+      onShow: (instance) => {
+        window.addEventListener("keydown", onKeyPressHandler);
+      },
+      /*
+       * Function that gets executed before the lightbox closes.
+       * Returning false will prevent the lightbox from closing.
+       */
+      onClose: (instance) => {
+        window.removeEventListener("keydown", onKeyPressHandler);
+      },
+    }
   );
+
   instance.show();
 
-  window.addEventListener("keydown", (e) => {
+  function onKeyPressHandler(e) {
     if (e.key !== "Escape") {
       console.log("Нажата клавиша", e.key);
       return;
     } else console.log("нажат", e.key);
     instance.close();
-  });
+  }
 }
-
-// function onKeyPressHandler(e) {
-//   if (e.key !== "Escape") {
-//     console.log("Нажата клавиша", e.key);
-//     return;
-//   } else console.log("нажат", e.key);
-//   hideModal();
-// }
-
-// function hideModal() {
-//   () => instance.close();
-//   window.removeEventListener("keydown", onKeyPressHandler);
-// }
